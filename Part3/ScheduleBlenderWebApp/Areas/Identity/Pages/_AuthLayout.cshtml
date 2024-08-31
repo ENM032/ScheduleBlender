@@ -1,0 +1,55 @@
+﻿@* 
+This code was taken from a YouTube Video
+Titled: Asp.Net Core MVC & Identity UI - User Registration and Login
+Uploaded by: CodAffection
+Available at: https://www.youtube.com/watch?v=wzaoQiS_9dI 
+*@
+
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+<div class="row justify-content-center">
+    <div class="col-5 mt-5">
+        <div class="card login-logout-card">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Identity/Account/Login" style="color:mediumpurple">
+                            Log In
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Identity/Account/Register" style="color:mediumpurple">
+                            Register
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="row justify-content-center">
+                    <div class="col-10 my-4">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        $(function() 
+        {
+            const currentPage = location.pathname;
+            $('.nav-tabs li a').each(function() 
+            {
+                const $this = $(this);
+                /*https://stackoverflow.com/questions/68349979/how-do-i-type-the-3-bar-with-slash-sign*/
+                if (currentPage.toLowerCase().indexOf($this.attr('href').toLowerCase()) !== -1) {
+                    $this.addClass('active');
+                }
+            })
+        })
+    </script>
+}

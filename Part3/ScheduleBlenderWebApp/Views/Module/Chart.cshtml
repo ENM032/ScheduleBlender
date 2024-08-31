@@ -1,0 +1,88 @@
+﻿
+@* 
+This code was taken from youtube
+titled: Create Chart in ASP.NET Core
+uploaded by: Coding World
+available at: https://www.youtube.com/watch?v=56aB0Yi9QlE 
+*@
+
+@{
+    ViewData["Title"] = "Pie Chart View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-9" align="center">
+        <h3>Doughnut chart of combined weekly completed self study hours</h3>
+       
+        @if (ViewBag.UserModulesEmpty)
+        {
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <a class="btn btn-lg formbtn" asp-action="Create">
+                Add new module information
+            </a>
+        }
+        <canvas id="pieChart" width="200" height="110" style="width:197px;height:110px;"></canvas>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax(
+            {
+                type: "POST",
+                url: "/Module/GetChartData",
+                data: "",
+                contextType: "application/json; charset-utf8",
+                dataType: "json",
+                success: OnSuccess,
+            });
+            function OnSuccess(data) 
+            {
+                const pieChart = document.getElementById('pieChart');
+                var _data = data;
+                var _labels = _data[0];
+                var _ChartData = _data[1];
+                var recommendHours = _data[2];
+                var colors = ['#9370db', '#b8db70', '#c970db', '#db9370', '#7083db'];
+
+                new Chart(pieChart,
+                {
+                    type: 'doughnut',
+                    data:
+                    {
+                        labels: _labels,
+                        datasets: [{
+                            label: 'Hours Completed',
+                            backgroundColor: colors,
+                            data: _ChartData,
+                            borderWidth: 1,
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: 
+                    {
+                        plugins: 
+                        {
+                            tooltip: 
+                            {
+                                callbacks: 
+                                {
+                                    // beforeTitle: function (context) 
+                                    // {
+                                    //     return 'Recommend self study hours: ';
+                                    // },
+                                    afterTitle: function (context) {
+                                        return `Recommend Self Study Hours: ${recommendHours[context[0].dataIndex]}`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+    });
+</script>

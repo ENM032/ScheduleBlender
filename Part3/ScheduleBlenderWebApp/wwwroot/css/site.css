@@ -1,0 +1,97 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+    color:mediumpurple;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  font-family:Roboto,sans-serif;
+}
+
+/*tab navigation*/
+.login-logout-card .card-header{
+    padding: 0px 0px 12px 0px;
+}
+
+.login-logout-card ul.nav-tabs {
+    margin: 0px 0px -12px 0px;
+}
+
+.login-logout-card liv.nav-item {
+    width: 50%;
+}
+
+.login-logout-card a.nav-link {
+    font-size: 1rem;
+    color: #495057;
+    text-align: center;
+    padding: 1rem;
+}
+
+.login-logout-card .card-body {
+    padding: 10px 20px;
+}
+
+.formbtn {
+    background-color: #9370db;
+    color: #ffffff;
+    border: 5px white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.formbtn:hover {
+    background-color: #7fdd6e;
+    color: #ffffff;
+}
+
+.labelbtn {
+    font-family: Roboto,sans-serif;
+    color:mediumpurple;
+    font-size: 1rem;
+}
+
+.labelbtn:hover {
+    color: #7fdd6e;
+}
+
+.alert {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: #7fdd6e;
+}
